@@ -184,11 +184,11 @@ void BST<T>::printInOrder(BSTNode *t, bool newLine ) const
 template <typename T>
 void BST<T>::printLevelOrder(BSTNode * t) const
 {
-	if( t == nullptr )
+   if( t == nullptr )
    {
-		cout << endl;
-		return;
-	}
+      cout << endl;
+      return;
+   }
 
    queue<BSTNode*> q;
 
@@ -202,15 +202,15 @@ void BST<T>::printLevelOrder(BSTNode * t) const
 		cout << t1->element << " ";
 
       // Add left child
-		if ( t1->left != nullptr )
+      if ( t1->left != nullptr )
          q.push(t1->left);
 
       // Add right child
-		if ( t1->right != nullptr )
+      if ( t1->right != nullptr )
          q.push(t1->right);
 
       // Remove current node from queue
-		q.pop();
+      q.pop();
    }
 	cout << endl;
 }
@@ -245,7 +245,7 @@ void BST<T>::insert(T&& v, BSTNode *&t)
 {
 	if( t == nullptr )
 		t = new BSTNode{ std::move(v), nullptr, nullptr };
-    else if( v < t->element )
+   else if( v < t->element )
 		insert( std::move(v), t->left );
 	else if( v > t->element )
 		insert( std::move(v), t->right );
@@ -256,7 +256,8 @@ void BST<T>::remove(const T& v, BSTNode *&t)
 {
 	if( t == nullptr ) // do nothing if item not found
 		return;
-    if( v < t->element ) // Move down left branch
+
+   if( v < t->element ) // Move down left branch
 		remove( v, t->left );
 	else if( v > t->element ) // Move down right branch
 		remove( v, t->right );
@@ -280,7 +281,7 @@ bool BST<T>::contains(const T& v, BSTNode *&t, BSTNode *&p)
 {
 	if( t == nullptr )
 		return false;
-    else if( v < t->element ) // Move down left branch
+   else if( v < t->element ) // Move down left branch
 		return contains( v, t->left, t );
 	else if( v > t->element ) // Move down right branch
 		return contains( v, t->right, t );
@@ -320,7 +321,7 @@ int BST<T>::numOfNodes(BSTNode *t) const
 		return 0;
 
    // Recursive call to sum number of nodes.
-	return 1 + numOfNodes( t->left ) + numOfNodes( t->right );
+   return 1 + numOfNodes( t->left ) + numOfNodes( t->right );
 }
 
 template <typename T>
