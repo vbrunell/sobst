@@ -9,4 +9,4 @@ A self organizing binary search tree can restructure itself depending on the sea
 
 To compile the program, simply open a terminal, navigate to the containing directory, and type `make`
 
-To run the program, execute the sobst program.  It will ask you for some input and display some tests.  It will then display a menu allowing you to manipulate the bst you created.
+To run the program, execute the `sobst` program built by the makefile.  It will ask you for some input and display some tests.  It will then display a menu allowing you to manipulate the bst you created.
