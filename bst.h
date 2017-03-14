@@ -68,7 +68,7 @@ class BST {
 		BSTNode * root;
 		int tvalue;
 
-/* ----------- Recursive Implementations ----------- */
+/* -------------- Recursive Implementations -------------- */
 	void printInOrder(BSTNode *t, bool newLine) const;
 	void printLevelOrder(BSTNode *t) const;
 	void makeEmpty(BSTNode* &t);
@@ -80,7 +80,7 @@ class BST {
 	int height(BSTNode *t) const;
 	BSTNode * clone(BSTNode *t) const;
 	BSTNode * findMin( BSTNode * t ) const;
-/* --------------------------------------------------- */
+/* --------------------------------------------------------- */
 
 	void rotateLChild( BSTNode * & t ) const;
 	void rotateRChild( BSTNode * & t ) const;
