@@ -330,7 +330,7 @@ int BST<T>::height(BSTNode *t) const
 		return -1;
 	else
       // Recursive call to sum height
-		return 1 + max( height( t->left ), height( t->right ) );
+      return 1 + max( height( t->left ), height( t->right ) );
 }
 
 template <typename T>
@@ -340,8 +340,8 @@ typename BST<T>::BSTNode * BST<T>::clone(BSTNode *t) const
 		return nullptr;
 	 else
       // Recursive call to clone nodes
-		return new BSTNode{  t->element, clone( t->left ),
-                           clone( t->right), t->scount };
+      return new BSTNode{ t->element, clone( t->left ),
+                          clone( t->right), t->scount };
 }
 
 template <typename T>
