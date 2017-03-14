@@ -175,9 +175,7 @@ template <typename T>
 void BST<T>::printInOrder(BSTNode *t, bool newLine ) const
 {
  	if(t == nullptr)
-	{
 		return;
-	}
 
 	printInOrder(t->left, false);
 	cout << t->element << " ";
@@ -232,9 +230,7 @@ template <typename T>
 void BST<T>::insert(const T& v, BSTNode *&t)
 {
 	if( t == nullptr ) // If open position, add new node
-	{
 		t = new BSTNode{ v, nullptr, nullptr };
-	}
     else if( v < t->element ) // Move down left branch
 		insert( v, t->left );
 	else if( v > t->element ) // Move down right branch
@@ -247,9 +243,7 @@ template <typename T>
 void BST<T>::insert(T&& v, BSTNode *&t)
 {
 	if( t == nullptr )
-	{
 		t = new BSTNode{ std::move(v), nullptr, nullptr };
-	}
     else if( v < t->element )
 		insert( std::move(v), t->left );
 	else if( v > t->element )
