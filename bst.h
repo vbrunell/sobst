@@ -80,7 +80,7 @@ class BST {
 	int height(BSTNode *t) const;
 	BSTNode * clone(BSTNode *t) const;
 	BSTNode * findMin( BSTNode * t ) const;
-/* --------------------------------------------------------- */
+/* -------------------------------------------------------- */
 
 	void rotateLChild( BSTNode * & t ) const;
 	void rotateRChild( BSTNode * & t ) const;
