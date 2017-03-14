@@ -24,8 +24,9 @@ BST<T>::BST(const BST & rhs) : root{nullptr}
 	root = clone(rhs.root);
 }
 
+// move constructor
 template <typename T>
-BST<T>::BST(BST&& rhs) : root{rhs.root}, tvalue{rhs.tvalue} // move constructor.
+BST<T>::BST(BST&& rhs) : root{rhs.root}, tvalue{rhs.tvalue}
 {
 	rhs.root = nullptr;
 	rhs.tvalue = 0;
@@ -279,7 +280,7 @@ bool BST<T>::contains(const T& v, BSTNode *&t, BSTNode *&p)
 {
 	if( t == nullptr )
 		return false;
-       else if( v < t->element ) // Move down left branch
+   else if( v < t->element ) // Move down left branch
 		return contains( v, t->left, t );
 	else if( v > t->element )  // Move down right branch
 		return contains( v, t->right, t );
