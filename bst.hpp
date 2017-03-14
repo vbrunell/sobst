@@ -279,7 +279,7 @@ bool BST<T>::contains(const T& v, BSTNode *&t, BSTNode *&p)
 {
 	if( t == nullptr )
 		return false;
-    else if( v < t->element ) // Move down left branch
+   else if( v < t->element ) // Move down left branch
 		return contains( v, t->left, t );
 	else if( v > t->element )  // Move down right branch
 		return contains( v, t->right, t );
