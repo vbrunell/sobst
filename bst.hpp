@@ -281,7 +281,7 @@ bool BST<T>::contains(const T& v, BSTNode *&t, BSTNode *&p)
 		return false;
     else if( v < t->element ) // Move down left branch
 		return contains( v, t->left, t );
-	else if( v > t->element ) // Move down right branch
+	else if( v > t->element )  // Move down right branch
 		return contains( v, t->right, t );
 	else
 	{
@@ -292,7 +292,7 @@ bool BST<T>::contains(const T& v, BSTNode *&t, BSTNode *&p)
 			t->scount = 0;
 			if( t == p ) // Check if found node is root, do nothing
 				;
-			else // Else, perform rotation
+			else         // Else, perform rotation
 			{
 				// Cases for rotation
 				if( t == nullptr )
@@ -317,7 +317,7 @@ int BST<T>::numOfNodes(BSTNode *t) const
 	if ( t == nullptr )
 		return 0;
 
-	return 1 + numOfNodes( t->left ) + numOfNodes( t->right); // Recursive call to sum number of nodes.
+	return 1 + numOfNodes( t->left ) + numOfNodes( t->right);
 }
 
 template <typename T>
