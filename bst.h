@@ -36,7 +36,7 @@ class BST {
 		const BST & operator=(BST && rhs);
 		bool empty();
 
-/* --- public interfaces ---
+/* --------------- public interfaces --------------
  *
  * They call the corresponding private versions of
  * the functions to perform certain tasks
@@ -50,8 +50,7 @@ class BST {
 		void insert(T &&v);
 		void remove(const T& v);
 		bool contains(const T& v);
-
-/* -------------------------- */
+/* ------------------------------------------------ */
 
 	private:
 
@@ -69,8 +68,7 @@ class BST {
 		BSTNode * root;
 		int tvalue;
 
-/* --- Recursive Implementations --- */
-
+/* ----------- Recursive Implementations ----------- */
 	void printInOrder(BSTNode *t, bool newLine) const;
 	void printLevelOrder(BSTNode *t) const;
 	void makeEmpty(BSTNode* &t);
@@ -82,8 +80,7 @@ class BST {
 	int height(BSTNode *t) const;
 	BSTNode * clone(BSTNode *t) const;
 	BSTNode * findMin( BSTNode * t ) const;
-
-/* ---------------------------------- */
+/* --------------------------------------------------- */
 
 	void rotateLChild( BSTNode * & t ) const;
 	void rotateRChild( BSTNode * & t ) const;
