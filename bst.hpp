@@ -1,12 +1,12 @@
 /*
  * Victor Brunell
  * Self Organizing Binary Search Trees
- * bst.hpp
+ * bst.h
 */
 
 #include "bst.h"
 
-/* --- Public Interfaces --- */
+/* ---Public Interfaces --- */
 
 template <typename T>
 BST<T>::BST(int th) : root{nullptr}, tvalue{th}
@@ -24,17 +24,16 @@ BST<T>::BST(const BST & rhs) : root{nullptr}
 	root = clone(rhs.root);
 }
 
-// move constructor
 template <typename T>
-BST<T>::BST(BST&& rhs) : root{rhs.root}, tvalue{rhs.tvalue}
+BST<T>::BST(BST&& rhs) : root{rhs.root}, tvalue{rhs.tvalue} // move constructor.
 {
 	rhs.root = nullptr;
 	rhs.tvalue = 0;
 }
 
-// destructor
 template <typename T>
-BST<T>::~BST() {
+BST<T>::~BST() // destructor.
+{
 	makeEmpty();
 }
 
@@ -77,9 +76,8 @@ const BST<T> & BST<T>::operator=(const BST & rhs)
 	return *this;
 }
 
-// move assignment operator.
 template <typename T>
-const BST<T> & BST<T>::operator=(BST && rhs)
+const BST<T> & BST<T>::operator=(BST && rhs) // move assignment operator.
 {
 	if( this != &rhs )
 	{
@@ -102,76 +100,78 @@ bool BST<T>::empty()
 }
 
 /*
- * The following public interfaces will call the corresponding
- * private versions of the functions to perform certain tasks.
+ *	The following public interfaces call the corresponding
+ *	private versions of the functions to perform certain
 */
 
-// print out the elements in the tree in the in-order traversal.
 template <typename T>
-void BST<T>::printInOrder() const {
+void BST<T>::printInOrder() const // print out the elements in the tree in the in-order traversal.
+{
 	printInOrder( root, true );
 }
 
-// print out the elements in the tree in the level-order traversal.
 template <typename T>
-void BST<T>::printLevelOrder() const {
+void BST<T>::printLevelOrder() const // print out the elements in the tree in the level-order traversal.
+{
 	printLevelOrder( root );
 }
 
-// return the number of nodes in the tree.
 template <typename T>
-int BST<T>::numOfNodes() const {
+int BST<T>::numOfNodes() const // return the number of nodes in the tree.
+{
 	return numOfNodes( root );
 }
 
-// return the height of the tree.
 template <typename T>
-int BST<T>::height() const {
+int BST<T>::height() const // return the height of the tree.
+{
 	return height( root );
 }
 
-// delete all nodes from the tree (make the tree empty)
 template <typename T>
-void BST<T>::makeEmpty() {
+void BST<T>::makeEmpty() // delete all nodes from the tree (make the tree empty)
+{
 	makeEmpty( root );
 }
 
-// insert v into the tree.
 template <typename T>
-void BST<T>::insert(const T& v) {
+void BST<T>::insert(const T& v) // insert v into the tree.
+{
 	insert( v, root );
 }
 
-// insert v into the tree (move instead of copy)
 template <typename T>
-void BST<T>::insert(T &&v) {
+void BST<T>::insert(T &&v) // insert v into the tree (move instead of copy)
+{
 	insert( std::move(v), root );
 }
 
-// delete value v from the tree.
 template <typename T>
-void BST<T>::remove(const T& v) {
+void BST<T>::remove(const T& v) // delete value v from the tree.
+{
 	remove( v, root );
 }
 
-// search to determine if v is the tree.
 template <typename T>
-bool BST<T>::contains(const T& v) {
+bool BST<T>::contains(const T& v) // search to determine if v is the tree.
+{
 	return contains( v, root, root );
 }
 
 
-/* ---- Private Interfaces ---
+/* --- Private Interfaces ---
  *
- *	All private member functions are implemented recursively
- *	except the function printLevelOrder(BSTNode *t).
+ * All implemented recursively except
+ * the function printLevelOrder(BSTNode *t).
 */
 
 template <typename T>
 void BST<T>::printInOrder(BSTNode *t, bool newLine ) const
 {
  	if(t == nullptr)
+	{
 		return;
+	}
 
 	printInOrder(t->left, false);
 	cout << t->element << " ";
@@ -184,16 +184,14 @@ void BST<T>::printInOrder(BSTNode *t, bool newLine ) const
 template <typename T>
 void BST<T>::printLevelOrder(BSTNode * t) const
 {
-   if( t == nullptr )
-   {
-      cout << endl;
-      return;
-   }
+	if( t == nullptr )
+	{
+		cout << endl;
+		return;
+	}
 
-   queue<BSTNode*> q;
-
-   // Add root
-	q.push(t);
+	queue<BSTNode*> q;
+	q.push(t); // Add root
 
 	while ( !q.empty() )
 	{
@@ -201,17 +199,14 @@ void BST<T>::printLevelOrder(BSTNode * t) const
 		BSTNode * t1 = q.front();
 		cout << t1->element << " ";
 
-      // Add left child
-      if ( t1->left != nullptr )
-         q.push(t1->left);
+		if ( t1->left != nullptr ) // Add left child
+			q.push(t1->left);
 
-      // Add right child
-      if ( t1->right != nullptr )
-         q.push(t1->right);
+		if ( t1->right != nullptr ) // Add right child
+			q.push(t1->right);
 
-      // Remove current node from queue
-      q.pop();
-   }
+		q.pop(); // Remove current node from queue
+	}
 	cout << endl;
 }
 
@@ -231,8 +226,10 @@ template <typename T>
 void BST<T>::insert(const T& v, BSTNode *&t)
 {
 	if( t == nullptr ) // If open position, add new node
+	{
 		t = new BSTNode{ v, nullptr, nullptr };
-   else if( v < t->element ) // Move down left branch
+	}
+    else if( v < t->element ) // Move down left branch
 		insert( v, t->left );
 	else if( v > t->element ) // Move down right branch
 		insert( v, t->right );
@@ -244,11 +241,14 @@ template <typename T>
 void BST<T>::insert(T&& v, BSTNode *&t)
 {
 	if( t == nullptr )
+	{
 		t = new BSTNode{ std::move(v), nullptr, nullptr };
-   else if( v < t->element )
+	}
+    else if( v < t->element )
 		insert( std::move(v), t->left );
 	else if( v > t->element )
 		insert( std::move(v), t->right );
+
 }
 
 template <typename T>
@@ -256,8 +256,7 @@ void BST<T>::remove(const T& v, BSTNode *&t)
 {
 	if( t == nullptr ) // do nothing if item not found
 		return;
-
-   if( v < t->element ) // Move down left branch
+    if( v < t->element ) // Move down left branch
 		remove( v, t->left );
 	else if( v > t->element ) // Move down right branch
 		remove( v, t->right );
@@ -269,7 +268,6 @@ void BST<T>::remove(const T& v, BSTNode *&t)
 	else
 	{
 		BSTNode *oldNode = t;
-
 		// Select correct branch to replace node with
 		t = ( t->left != nullptr ) ? t->left : t->right;
 		delete oldNode;
@@ -281,7 +279,7 @@ bool BST<T>::contains(const T& v, BSTNode *&t, BSTNode *&p)
 {
 	if( t == nullptr )
 		return false;
-   else if( v < t->element ) // Move down left branch
+    else if( v < t->element ) // Move down left branch
 		return contains( v, t->left, t );
 	else if( v > t->element ) // Move down right branch
 		return contains( v, t->right, t );
@@ -303,8 +301,7 @@ bool BST<T>::contains(const T& v, BSTNode *&t, BSTNode *&p)
 					rotateRChild( p );
 				else if( p->right == nullptr )
 					rotateLChild( p );
-				else if( !(p->left->element < t->element) &&
-                     !(t->element < p->left->element) )
+				else if( !(p->left->element < t->element) && !(t->element < p->left->element) )
 					rotateLChild( p );
 				else
 					rotateRChild( p );
@@ -320,8 +317,7 @@ int BST<T>::numOfNodes(BSTNode *t) const
 	if ( t == nullptr )
 		return 0;
 
-   // Recursive call to sum number of nodes.
-   return 1 + numOfNodes( t->left ) + numOfNodes( t->right );
+	return 1 + numOfNodes( t->left ) + numOfNodes( t->right); // Recursive call to sum number of nodes.
 }
 
 template <typename T>
@@ -331,8 +327,7 @@ int BST<T>::height(BSTNode *t) const
 		return -1;
 	else
       // Recursive call to sum height
-      return 1 + max( height( t->left ), height( t->right ) );
-}
+		return 1 + max( height( t->left ), height( t->right ) ); }
 
 template <typename T>
 typename BST<T>::BSTNode * BST<T>::clone(BSTNode *t) const
@@ -341,8 +336,7 @@ typename BST<T>::BSTNode * BST<T>::clone(BSTNode *t) const
 		return nullptr;
 	 else
       // Recursive call to clone nodes
-      return new BSTNode{ t->element, clone( t->left ),
-                          clone( t->right), t->scount };
+		return new BSTNode{ t->element, clone( t->left ), clone( t->right), t->scount };
 }
 
 template <typename T>
