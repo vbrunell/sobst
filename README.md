@@ -1,6 +1,6 @@
-# sobst
+# Generic Self-Organizing Binary Search Trees
 
-A C++ implementation of generic self-organizing binary search trees.
+This is a C++ implementation of generic self-organizing binary search trees.
 
 A self organizing binary search tree can restructure itself depending on the search frequency of the elements in the tree.
 
