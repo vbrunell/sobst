@@ -1,4 +1,3 @@
-# Generic Self-Organizing Binary Search Trees
 
 This is a C++ implementation of generic self-organizing binary search trees.
 
