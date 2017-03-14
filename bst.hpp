@@ -32,8 +32,9 @@ BST<T>::BST(BST&& rhs) : root{rhs.root}, tvalue{rhs.tvalue}
 	rhs.tvalue = 0;
 }
 
+// destructor
 template <typename T>
-BST<T>::~BST() // destructor.
+BST<T>::~BST()
 {
 	makeEmpty();
 }
@@ -77,8 +78,9 @@ const BST<T> & BST<T>::operator=(const BST & rhs)
 	return *this;
 }
 
+// move assignment operator
 template <typename T>
-const BST<T> & BST<T>::operator=(BST && rhs) // move assignment operator.
+const BST<T> & BST<T>::operator=(BST && rhs)
 {
 	if( this != &rhs )
 	{
@@ -106,55 +108,58 @@ bool BST<T>::empty()
 */
 
 template <typename T>
-void BST<T>::printInOrder() const // print out the elements in the tree in the in-order traversal.
+void BST<T>::printInOrder() const
 {
 	printInOrder( root, true );
 }
 
 template <typename T>
-void BST<T>::printLevelOrder() const // print out the elements in the tree in the level-order traversal.
+void BST<T>::printLevelOrder() const
 {
 	printLevelOrder( root );
 }
 
 template <typename T>
-int BST<T>::numOfNodes() const // return the number of nodes in the tree.
+int BST<T>::numOfNodes() const
 {
 	return numOfNodes( root );
 }
 
 template <typename T>
-int BST<T>::height() const // return the height of the tree.
+int BST<T>::height() const
 {
 	return height( root );
 }
 
+// delete all nodes from the tree
 template <typename T>
-void BST<T>::makeEmpty() // delete all nodes from the tree (make the tree empty)
+void BST<T>::makeEmpty()
 {
 	makeEmpty( root );
 }
 
 template <typename T>
-void BST<T>::insert(const T& v) // insert v into the tree.
+void BST<T>::insert(const T& v)
 {
 	insert( v, root );
 }
 
+// insert v into the tree (move instead of copy)
 template <typename T>
-void BST<T>::insert(T &&v) // insert v into the tree (move instead of copy)
+void BST<T>::insert(T &&v)
 {
 	insert( std::move(v), root );
 }
 
 template <typename T>
-void BST<T>::remove(const T& v) // delete value v from the tree.
+void BST<T>::remove(const T& v)
 {
 	remove( v, root );
 }
 
+// search the tree for v
 template <typename T>
-bool BST<T>::contains(const T& v) // search to determine if v is the tree.
+bool BST<T>::contains(const T& v)
 {
 	return contains( v, root, root );
 }
