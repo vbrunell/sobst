@@ -36,7 +36,7 @@ class BST {
 		const BST & operator=(BST && rhs);
 		bool empty();
 
-/* --------------- public interfaces --------------
+/* --------------- Public Interfaces --------------
  *
  * They call the corresponding private versions of
  * the functions to perform certain tasks
